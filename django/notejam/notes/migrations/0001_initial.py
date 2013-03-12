@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'Note'
         db.create_table('notes_note', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('pad', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pads.Pad'], null=True)),
+            ('pad', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pads.Pad'])),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('text', self.gf('django.db.models.fields.TextField')()),
@@ -68,7 +68,7 @@ class Migration(SchemaMigration):
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'pad': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pads.Pad']", 'null': 'True'}),
+            'pad': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pads.Pad']"}),
             'text': ('django.db.models.fields.TextField', [], {}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})

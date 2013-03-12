@@ -145,10 +145,6 @@
     color: #999;
 }
 
-td.date {
-    font-style: italic;
-}
-
 td.date, th.date {
     text-align: right;
 }
@@ -200,41 +196,6 @@ div.sign-in-out-block a {
 table.notes {
     margin: 0 0 20px 0;
 }
-
-table.notes th.note {
-    width: 72%;
-}
-
-table.notes td.pad {
-    color: grey;
-}
-
-table.notes td.pad a {
-    color: grey;
-    text-decoration: underline;
-    font-style: normal;
-}
-
-
-table.notes td.pad a:hover {
-    color: black;
-}
-
-p.empty {
-    color: grey;
-    font-style: italic;
-}
-
-a.delete-note {
-    float: right;
-    font-size: 12px;
-    color: red;
-}
-
-div.note {
-    margin: 0 0 10px 0;
-}
-
 
 ul.errorlist {
     margin: -18px 0 0 0;
