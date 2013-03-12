@@ -7,7 +7,6 @@
     <div class="note">
         {{ note.text }}
     </div>
-    <button type="button">Edit</button>
-    <a href="#">Share settings</a>
+    <a href="{% url edit_note pk=note.id %}" class="button">Edit</a>
 </div>
 {% endblock %}
