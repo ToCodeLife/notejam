@@ -49,6 +49,7 @@ class NoteDetailView(DetailView):
 class NoteListView(ListView):
     model = Note
     context_object_name = 'notes'
+    paginate_by = 10
     order_by = '-updated_at'
 
     def get_queryset(self):
