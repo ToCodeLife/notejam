@@ -1,2 +1,0 @@
-Notejam: Flask implementation
-=============================
