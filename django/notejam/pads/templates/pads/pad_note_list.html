@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load date_tags %}
 
 {% block breadcrumbs %}<span>{{ pad.name }} ({{ notes.count }})</span>{%endblock%}
 
@@ -15,7 +14,7 @@
                 {% for note in notes %}
                 <tr>
                     <td><a href="{% url view_note pk=note.id %}">{{ note.name }}</a></td>
-                    <td class="hidden-text date">{{ note.updated_at|smart_date }}</td>
+                    <td class="hidden-text date">Today at 10:51</td>
                 </tr>
                 {% endfor %}
             </table>
