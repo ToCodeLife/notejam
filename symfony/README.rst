@@ -1,3 +1,0 @@
-Notejam: Symfony implementation
-===============================
-
