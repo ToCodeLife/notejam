@@ -1,2 +1,0 @@
-Notejam: Pyramid implementation
-===============================
