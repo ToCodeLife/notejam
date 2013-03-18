@@ -1,3 +1,1 @@
 Notejam: Django implementation
-
-Requirements:
