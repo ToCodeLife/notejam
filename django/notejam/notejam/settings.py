@@ -176,11 +176,3 @@ LOGGING = {
         },
     }
 }
-
-# custom test runner
-TEST_RUNNER = 'notejam.tests.AdvancedTestSuiteRunner'
-
-# exclude non app tests
-TEST_EXCLUDE = (
-    'django',
-)
