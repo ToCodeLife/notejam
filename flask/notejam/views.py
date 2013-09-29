@@ -152,7 +152,7 @@ def signin():
             flash('You are signed in!', 'success')
             return redirect(url_for('index'))
         else:
-            flash('Wrong email or password', 'error')
+            flash('Wrong credentials.', 'error')
     return render_template('users/signin.html', form=form)
 
 
@@ -162,6 +162,7 @@ def signout():
     return redirect(url_for('signin'))
 
 
+# @TODO use macro for form fields in template
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
