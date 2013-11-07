@@ -1,11 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView
 
-from users.forms import SignupForm, SigninForm
+from users.forms import SignupForm, SigninForm, ForgotPasswordForm
 
 
 class SignupView(CreateView):
@@ -42,8 +44,27 @@ class SigninView(FormView):
 
 
 class ForgotPasswordView(FormView):
-    pass
+    form_class = ForgotPasswordForm
+    template_name = 'forgot_password.html'
+    success_url = reverse_lazy('signin')
+    success_message = 'Check your inbox'
+
+    def form_valid(self, form):
+        messages.success(self.request, self.success_message)
+        return super(ForgotPasswordView, self).form_valid(form)
 
 
-class SettingsView(FormView):
-    pass
+class AccountSettingsView(FormView):
+    form_class = PasswordChangeForm
+    template_name = 'account.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Password is successfully changed'
+
+    def get_form_kwargs(self):
+        kwargs = super(AccountSettingsView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        messages.success(self.request, self.success_message)
+        return super(AccountSettingsView, self).form_valid(form)
