@@ -30,16 +30,9 @@ class NoteController extends Controller
         )[$orderBy];
     }
 
-    public function viewAction($id, Request $request) 
+    public function viewAction() 
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-        $note = $this->getDoctrine()
-                    ->getRepository('NotejamNoteBundle:Note')
-                    ->findOneBy(array('id' => $id, 
-                                      'user' => $user));
-        return $this->render('NotejamNoteBundle:Note:view.html.twig', array(
-            'note' => $note
-        ));
+        // code...
     }
 
     public function createAction(Request $request) 

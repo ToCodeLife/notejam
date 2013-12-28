@@ -21,7 +21,7 @@ security:
                 check_path: /login_check
                 username_parameter: form[email]
                 password_parameter: form[password]
-                default_target_path: /
+                default_target_path: /settings
                 remember_me: true
             logout:
                 path: /signout
@@ -34,7 +34,6 @@ security:
             security: true
             anonymous: true
     access_control:
-        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: /signin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /settings, roles: ROLE_USER }
@@ -42,3 +41,4 @@ security:
         - { path: /pads, roles: ROLE_USER }
         - { path: /, roles: ROLE_USER }
         # for dev needs
+        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY}
