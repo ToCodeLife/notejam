@@ -15,6 +15,7 @@ class UserControllerTest extends WebTestCase
             ->getManager() ;
         
     }
+
     public function testSignupSuccess() 
     {
         $client = static::createClient();
