@@ -8,7 +8,6 @@ class UserControllerTest extends WebTestCase
 {
     public function setUp() {
         $this->loadFixtures(array());
-        // init kernel to init entity manager
         static::$kernel = static::createKernel(array('environment' => 'test'));
         static::$kernel->boot();
         $this->em = static::$kernel->getContainer()
@@ -16,7 +15,6 @@ class UserControllerTest extends WebTestCase
             ->getManager() ;
         
     }
-
     public function testSignupSuccess() 
     {
         $client = static::createClient();
@@ -65,8 +63,7 @@ class UserControllerTest extends WebTestCase
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('ul.errorlist > li')->count());
         $this->assertEquals(
-            'Email already taken', 
-            $crawler->filter('ul.errorlist > li')->text()
+            'Email already taken', $crawler->filter('ul.errorlist > li')->text()
         );
     }
 

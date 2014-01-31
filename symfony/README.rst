@@ -10,9 +10,9 @@ Symfony version: 2.4
 Installation and launching
 ==========================
 
------
-Clone
------
+-------
+Cloning
+-------
 
 Clone the repo:
 
@@ -51,9 +51,9 @@ Start built-in symfony web server:
 
 Go to http://localhost:8000/ in your browser.
 
----------
-Run tests
----------
+-------------
+Running tests
+-------------
 
 Run tests:
 
