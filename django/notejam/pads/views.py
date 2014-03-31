@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
@@ -14,15 +13,13 @@ from pads.forms import PadForm
 class PadCreateView(CreateView):
     model = Pad
     form_class = PadForm
-    template_name_suffix = '_create'
     success_url = reverse_lazy('home')
-    success_message = 'Pad is successfully created'
+    template_name_suffix = '_create'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        messages.success(self.request, self.success_message)
         return redirect(self.get_success_url())
 
     def get_success_url(self):
@@ -32,13 +29,8 @@ class PadCreateView(CreateView):
 class PadUpdateView(UpdateView):
     model = Pad
     form_class = PadForm
-    template_name_suffix = '_update'
     success_url = reverse_lazy('home')
-    success_message = 'Pad is successfully updated'
-
-    def form_valid(self, form):
-        messages.success(self.request, self.success_message)
-        return super(PadUpdateView, self).form_valid(form)
+    template_name_suffix = '_update'
 
     def get_queryset(self):
         qs = super(PadUpdateView, self).get_queryset()

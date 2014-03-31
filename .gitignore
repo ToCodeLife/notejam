@@ -39,6 +39,3 @@ nosetests.xml
 
 # DB
 *.db
-
-# Django
-/django/notejam/static/
