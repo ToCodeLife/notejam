@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 
-<span>
-    {% if note.pad %}
-        <a href="{% url view_pad_notes pk=note.pad.id %}">{{ note.pad.name }}</a> &raquo;
-    {% endif %}
-    Edit {{note.name}}
-</span>
+{% block breadcrumbs %}<span>Edit {{ note.name }}</span>{% endblock %}
 {% block content %}
-    {% include "notes/note_form.html" %}
+    <div class="thirteen columns content-area">
+        {% include "notes/note_form.html" %}
+    </div>
 {% endblock %}
 
 
