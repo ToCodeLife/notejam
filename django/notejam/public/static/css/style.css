@@ -145,12 +145,12 @@
     color: #999;
 }
 
-td.date, th.date {
-    text-align: right;
-}
-
 td.date {
     font-style: italic;
+}
+
+td.date, th.date {
+    text-align: right;
 }
 
 form.note input, form.note textarea {
@@ -231,9 +231,14 @@ a.delete-note {
     color: red;
 }
 
-.red {
+a.red, .red {
     color: red;
 }
+
+div.note {
+    margin: 0 0 10px 0;
+}
+
 
 ul.errorlist {
     margin: -18px 0 0 0;
