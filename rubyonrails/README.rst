@@ -22,7 +22,7 @@ Clone the repo:
 Launch
 ------
 
-Start built-in web server:
+Start django web server:
 
 .. code-block:: bash
 

@@ -1,6 +1,5 @@
 class UserController < ApplicationController
   before_filter :authenticate_user, :only => [:settings]
-
   def signup
     if params[:user]
       @user = User.new(user_params)
@@ -81,6 +80,6 @@ class UserController < ApplicationController
 
     def generate_password
         # weak password generation
-        (0...8).map { ('a'..'z').to_a[rand(26)] }.join
+        new_password = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
     end
 end
