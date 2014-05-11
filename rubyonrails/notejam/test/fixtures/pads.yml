@@ -1,3 +1,9 @@
-existent_pad:
-  name: "Pad"
-  user: existent_user
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user_id: 
+
+two:
+  name: MyString
+  user_id: 
