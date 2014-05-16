@@ -1,15 +1,13 @@
 class PadController < ApplicationController
-  before_filter :authenticate_user
   def create
     if params[:pad]
       @pad = current_user.pads.create(pad_params)
       if @pad.valid?
         redirect_to(
-          url_for(:all_notes),
+          url_for(:all_notes), 
           :flash => {:success => "Pad is created"}
         )
       end
-      current_user.pads.delete(@pad)
     end
   end
 
@@ -19,7 +17,7 @@ class PadController < ApplicationController
     if params[:pad]
       if @pad.update(pad_params)
         redirect_to(
-          view_pad_notes_path(:id => @pad.id),
+          all_notes_path,
           :flash => {:success => "Pad is updated"}
         )
       end
@@ -32,7 +30,7 @@ class PadController < ApplicationController
         @pad.destroy
         redirect_to(
           all_notes_path,
-          :flash => {:success => "Pad is deleted"}
+          :flash => {:success => "Pad was deleted"}
         )
     end
   end

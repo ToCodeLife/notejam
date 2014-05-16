@@ -1,6 +1,5 @@
 class UserController < ApplicationController
   before_filter :authenticate_user, :only => [:settings]
-
   def signup
     if params[:user]
       @user = User.new(user_params)
@@ -33,11 +32,9 @@ class UserController < ApplicationController
     if request.post?
       user = User.find_by_email(params[:email])
       if user
-        new_password = generate_password
-        user.password = new_password
-        user.password_confirmation = new_password
+        user.password = "123123"
+        user.password_confirmation = "123123"
         user.save
-        UserMailer.send_new_password(user, new_password).deliver
         redirect_to(
           signin_path,
           :flash => {:success => "New password sent to your mail"}
@@ -77,10 +74,5 @@ class UserController < ApplicationController
       params.require(:user).permit(
         :email, :password, :password_confirmation, :current_password
       )
-    end
-
-    def generate_password
-        # weak password generation
-        (0...8).map { ('a'..'z').to_a[rand(26)] }.join
     end
 end

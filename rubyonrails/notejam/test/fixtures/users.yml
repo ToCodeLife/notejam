@@ -1,7 +1,9 @@
-existent_user:
-  email: 'existent_user@example.com'
-  password_digest: <%= BCrypt::Password.create("secure_password")%>
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-existent_user2:
-  email: 'existent_user2@example.com'
-  password_digest: <%= BCrypt::Password.create("secure_password")%>
+#one:
+  #email: MyString
+  #password: 
+
+#two:
+  #email: MyString
+  #password: 
