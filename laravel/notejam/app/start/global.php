@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,13 +65,6 @@ App::error(function(Exception $exception, $code)
 App::down(function()
 {
 	return Response::make("Be right back!", 503);
-});
-
-// Handle model not found exception
-App::error(function(ModelNotFoundException $e)
-{
-    die('asdf');
-    return Response::make('Not Found', 404);
 });
 
 /*
