@@ -18,12 +18,10 @@ class UserController extends BaseController {
             {
                 return Redirect::route('signup')->withErrors($validation);
             }
-            $user = User::create(
-                array(
-                    'email'  => Input::get('email'),
-                    'password' => Hash::make(Input::get('password'))
-                )
-            );
+            $user = new User();
+            $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
             return Redirect::route('signin')
                 ->with('success', 'Now you can sign in.');
         }
@@ -54,8 +52,6 @@ class UserController extends BaseController {
                 return Redirect::route('all_notes')
                     ->with('success', 'Signed in now!');
             }
-            return Redirect::route('signin')
-                ->with('error', 'Invalid email or password');
         }
 		return View::make('user/signin');
 	}
