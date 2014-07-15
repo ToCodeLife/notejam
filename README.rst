@@ -24,7 +24,6 @@ Supported frameworks
 
 
 * `Symfony <https://github.com/komarserjio/notejam/tree/master/symfony>`_
-* `Laravel <https://github.com/komarserjio/notejam/tree/master/laravel>`_
 
 **Ruby**
 
@@ -34,6 +33,11 @@ Supported frameworks
 ===========
 In progress
 ===========
+
+**PHP**
+
+
+* Laravel
 
 **Ruby**
 

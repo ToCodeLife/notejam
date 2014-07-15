@@ -11,6 +11,6 @@
 
     <%= f.label :pad %>
     <%= f.collection_select :pad_id, Pad.all, :id, :name, :prompt => "--------", :selected => params[:pad] %>
-
+ 
     <%= f.submit "Save" %>
 <% end %>
