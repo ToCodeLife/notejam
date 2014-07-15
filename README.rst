@@ -1,19 +1,16 @@
-*******
-Notejam
-*******
-
-**The easy way to learn web frameworks**
+***************
+Notejam project
+***************
 
 Do you know django/lavarel/symfony/etc and want to try rails/flask/pyramid/etc?
 The easy way to start up with a new framework is to compare it with frameworks you already know.
 
 Notejam is a simple web application (more than just Hello World) implemented using different server-side frameworks.
 
-Learn, discover and have fun :)
+Compare, learn and have fun :)
 
-====================
 Supported frameworks
-====================
+--------------------
 
 **Python**
 
@@ -46,7 +43,7 @@ In progress
 
 **PHP**
 
-* Yii
+* YII
 
 
 ====================
