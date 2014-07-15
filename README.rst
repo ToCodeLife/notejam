@@ -24,25 +24,22 @@ Supported frameworks
 
 
 * `Symfony <https://github.com/komarserjio/notejam/tree/master/symfony>`_
+* `Laravel <https://github.com/komarserjio/notejam/tree/master/laravel>`_
 
 **Ruby**
 
 
 * `Ruby on Rails <https://github.com/komarserjio/notejam/tree/master/rubyonrails>`_
+* `Padrino <https://github.com/komarserjio/notejam/tree/master/padrino>`_
 
 ===========
 In progress
 ===========
 
-**PHP**
+**Javasript**
 
 
-* Laravel
-
-**Ruby**
-
-
-* Padrino
+* Express.js
 
 
 =========
