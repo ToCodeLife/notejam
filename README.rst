@@ -30,16 +30,15 @@ Supported frameworks
 
 
 * `Ruby on Rails <https://github.com/komarserjio/notejam/tree/master/rubyonrails>`_
-* `Padrino <https://github.com/komarserjio/notejam/tree/master/padrino>`_
 
 ===========
 In progress
 ===========
 
-**Javasript**
+**Ruby**
 
 
-* Express.js
+* Padrino
 
 
 =========
