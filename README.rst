@@ -1,15 +1,13 @@
-*******
-Notejam
-*******
-
-**The easy way to learn web frameworks**
+***************
+Notejam project
+***************
 
 Do you know django/lavarel/symfony/etc and want to try rails/flask/pyramid/etc?
 The easy way to start up with a new framework is to compare it with frameworks you already know.
 
-Notejam is a simple web application (more than just Hello World) implemented using different server-side frameworks.
+Notejam is a simple web application (more than just Hello World) implemented using different popular server-side frameworks.
 
-Learn, discover and have fun :)
+Compare, learn and have fun :)
 
 ====================
 Supported frameworks
@@ -32,53 +30,30 @@ Supported frameworks
 
 
 * `Ruby on Rails <https://github.com/komarserjio/notejam/tree/master/rubyonrails>`_
-* `Padrino <https://github.com/komarserjio/notejam/tree/master/padrino>`_
 
-
+===========
 In progress
------------
+===========
 
-**Javascript**
-
-
-* Express.js
+**Ruby**
 
 
-**PHP**
+* Padrino
 
-* Yii
 
-... and more frameworks are coming.
+=========
+Live demo
+=========
 
-====================
-Application overview
-====================
+Not available yet.
 
-Notejam is a web application which allows user to sign up/in/out and create/view/edit/delete notes.
-Notes are grouped in pads. See `screenshots <https://github.com/komarserjio/notejam/tree/master/screenshots.rst>`_
-for look and feel.
 
-See `detailed overview <https://github.com/komarserjio/notejam/blob/master/contribute.rst#application-requirements>`_.
+===========
+Screenshots
+===========
 
-The application covers following components:
+Not available yet.
 
-* Request/Response
-* Routing
-* Templates
-* Configuration
-* Authentication
-* Forms
-* Error handling
-* Database/ORM
-* Mailing
-* Functional/unit testing
-
-=============
-How to launch
-=============
-
-Implemenations are SQLite based and launchable by built-in web servers.
-Each implementation has instruction describing easy steps to install environment, launch and run tests.
 
 ============
 Contribution
@@ -86,17 +61,10 @@ Contribution
 
 Contribution is more than welcome!
 
-**Do you want to improve one of the existing implementations?**
+**Do you want to improve one of the existing applications?**
 
-Each implemenation has its own README with contribution details.
+Each application has its own README with contribution details.
 
-**Do you want to add new implementaion?**
+**Do you want to add new application?**
 
-Read `contribution guide <https://github.com/komarserjio/notejam/blob/master/contribute.rst>`_ for details.
-
-==========
-Questions?
-==========
-
-* Twitter: `@komarserjio <https://twitter.com/komarserjio>`_
-* Email: komarserjio <at> gmail.com
+Read `contribution guide <https://github.com/komarserjio/notejam/blob/master/contribute.rst>`_.
