@@ -26,14 +26,6 @@
         font-weight: normal;
         font-size: 23px;
     }
-    .bold-header a.header {
-        text-decoration: none;
-        color: inherit;
-    }
-    .bold-header span.jam {
-        font-size: 46px;
-        line-height: 50px;
-    }
 	nav ul {
 		float: left;  }
 	nav ul li {
@@ -161,13 +153,8 @@ td.date {
     font-style: italic;
 }
 
-form.note input[type="text"], form.note textarea {
+form.note input, form.note textarea {
     width: 100%;
-}
-
-form hr {
-    width: 218px;
-    margin: 10px 0px;
 }
 
 form.note textarea {
@@ -183,9 +170,7 @@ hr.footer {
 }
 
 div.footer {
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 12px;
+   margin-bottom: 10px; 
 }
 
 form.sign-in {
@@ -203,18 +188,13 @@ form.sign-in {
 
 div.sign-in-out-block {
     position: absolute;
-    right: 14px;
+    right: 0;
     top: 8px;
     font-size: 12px;
 }
 
 div.sign-in-out-block a {
     /*text-decoration: none;*/
-}
-
-a.small-red {
-    color: red;
-    font-size: 12px;
 }
 
 table.notes {
@@ -251,15 +231,15 @@ a.delete-note {
     color: red;
 }
 
-.red, input.red {
-    color: red !important;
+.red {
+    color: red;
 }
 
-ul.errorlist, ul.errors, ul.error {
+ul.errorlist {
     margin: -18px 0 0 0;
 }
 
-ul.errorlist li, ul.errors li, ul.error li {
+ul.errorlist li {
     color: red;
 }
 
@@ -285,6 +265,15 @@ ul.errorlist li, ul.errors li, ul.error li {
     color: #b94a48;
     background-color: #f2dede;
     border: 1px solid #eed3d7;
+}
+
+/* Pyramid specific styles */
+ul.error {
+    margin: -18px 0 0 0;
+}
+
+ul.error li {
+    color: red;
 }
 
 	/* Mobile */
@@ -346,5 +335,4 @@ ul.errorlist li, ul.errors li, ul.error li {
 	@media only screen and (max-width: 959px) and (max-device-width: 1000px) {
 		.resize { display: none; }
 	}
-
 

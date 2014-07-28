@@ -10,6 +10,7 @@ dist
 build
 eggs
 parts
+bin
 var
 sdist
 develop-eggs
@@ -41,6 +42,3 @@ nosetests.xml
 
 # Django
 /django/notejam/static/
-
-#.phar archives
-*.phar
