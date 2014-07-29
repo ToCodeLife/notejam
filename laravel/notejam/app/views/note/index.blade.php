@@ -27,7 +27,7 @@ All notes ({{ $notes->count() }})
             @endforeach
         </table>
     @else
-        <p class="empty">Create your first note.</p>
+        <p class="empty">You don't have notes yet.</p>
     @endif
-    <a href="{{ URL::route('create_note') }}" class="button">New note</a>
+    <a href="{{ URL::route('create_note') }}" class="button">Create a note</a>
 @stop

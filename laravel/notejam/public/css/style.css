@@ -30,10 +30,6 @@
         text-decoration: none;
         color: inherit;
     }
-    .bold-header span.jam {
-        font-size: 46px;
-        line-height: 50px;
-    }
 	nav ul {
 		float: left;  }
 	nav ul li {
@@ -161,13 +157,8 @@ td.date {
     font-style: italic;
 }
 
-form.note input[type="text"], form.note textarea {
+form.note input[type=text], form.note textarea {
     width: 100%;
-}
-
-form hr {
-    width: 218px;
-    margin: 10px 0px;
 }
 
 form.note textarea {
@@ -183,9 +174,7 @@ hr.footer {
 }
 
 div.footer {
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 12px;
+   margin-bottom: 10px;
 }
 
 form.sign-in {
@@ -203,18 +192,13 @@ form.sign-in {
 
 div.sign-in-out-block {
     position: absolute;
-    right: 14px;
+    right: 0;
     top: 8px;
     font-size: 12px;
 }
 
 div.sign-in-out-block a {
     /*text-decoration: none;*/
-}
-
-a.small-red {
-    color: red;
-    font-size: 12px;
 }
 
 table.notes {
@@ -252,14 +236,14 @@ a.delete-note {
 }
 
 .red, input.red {
-    color: red !important;
+    color: red;
 }
 
-ul.errorlist, ul.errors {
+ul.errorlist {
     margin: -18px 0 0 0;
 }
 
-ul.errorlist li, ul.errors li {
+ul.errorlist li {
     color: red;
 }
 
@@ -346,5 +330,4 @@ ul.errorlist li, ul.errors li {
 	@media only screen and (max-width: 959px) and (max-device-width: 1000px) {
 		.resize { display: none; }
 	}
-
 

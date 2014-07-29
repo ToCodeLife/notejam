@@ -22,7 +22,7 @@ class UserType extends AbstractType
            ),
            'invalid_message' => 'The password fields do not match.',
         ));
-        $builder->add('save', 'submit', array('label' => 'Sign up'));
+        $builder->add('save', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
