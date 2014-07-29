@@ -1,8 +1,8 @@
-**************
-Notejam: Flask
-**************
+**************************
+Notejam: Flask application
+**************************
 
-Notejam application implemented using `Flask <http://flask.pocoo.org/>`_ microframework.
+Notejam application implemented using `Flask`_ microframework.
 
 Flask version: 0.9
 
@@ -18,9 +18,9 @@ Flask extension used:
 Installation and launching
 ==========================
 
------
-Clone
------
+-------
+Cloning
+-------
 
 Clone the repo:
 
@@ -28,11 +28,10 @@ Clone the repo:
 
     $ git clone git@github.com:komarserjio/notejam.git YOUR_PROJECT_DIR/
 
--------
-Install
--------
-Use `virtualenv <http://www.virtualenv.org>`_ or `virtualenvwrapper <http://virtualenvwrapper.readthedocs.org/>`_
-for `environment management <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_.
+-------------------
+Install environment
+-------------------
+Using `virtualenv`_ is strongly advised.
 
 Install dependencies:
 
@@ -40,13 +39,6 @@ Install dependencies:
 
     $ cd YOUR_PROJECT_DIR/flask/
     $ pip install -r requirements.txt
-
-Create database schema:
-
-.. code-block:: bash
-
-    $ cd YOUR_PROJECT_DIR/flask/
-    $ python db.py
 
 ------
 Launch
@@ -61,29 +53,29 @@ Start flask web server:
 
 Go to http://127.0.0.1:5000/ in your browser
 
----------
-Run tests
----------
+------------------
+Running unit tests
+------------------
 
-Run functional and unit tests:
+Run unit tests:
 
 .. code-block:: bash
 
     $ cd YOUR_PROJECT_DIR/flask/
     $ python tests.py
 
-
 ============
 Contribution
 ============
 
-Do you have python/flask experience? Help the app to follow python and flask best practices.
-
 Please send your pull requests in the ``flask`` branch, not ``master``.
-Always prepend your commits with framework name:
+
+Always prepend your commits with a framework name:
 
 .. code-block:: bash
 
     Flask: Implemented sign in functionality
 
-Read `contribution guide <https://github.com/komarserjio/notejam/blob/master/contribute.rst>`_ for details.
+
+.. _virtualenv: http://www.virtualenv.org 
+.. _Flask: http://flask.pocoo.org/
