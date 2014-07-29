@@ -150,9 +150,11 @@ def create_note(request):
 @view_config(route_name='update_note', renderer='templates/notes/edit.pt',
              permission='login_required')
 def update_note(request):
+    user = get_current_user(request)
     note_id = request.matchdict['note_id']
     note = DBSession.query(Note).filter(Note.id == note_id).first()
-    form = Form(request, schema=NoteSchema(), obj=note)
+    form = Form(
+        request, schema=NoteSchema(), state=State(user=user), obj=note)
     if form.validate():
         note = form.bind(note)
         DBSession.add(note)
@@ -265,7 +267,7 @@ def _generate_password(request, user):
     m.update(
         "{email}{secret}{date}".format(
             email=user.email,
-            secret=request.registry.settings.get('session.secret'),
+            secret=request.registry['session.secret'],
             date=str(date.today())
         )
     )
