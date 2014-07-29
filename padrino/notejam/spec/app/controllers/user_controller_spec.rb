@@ -74,6 +74,6 @@ describe "UserController" do
       "email" => user_data['email'],
       "password" => "wrong password"
     }
-    last_response.body.should include("Wrong email or password")
+    last_response.body.should include("Invalid credentials")
   end
 end
