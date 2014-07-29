@@ -1,7 +1,7 @@
 @extends('user')
 
 @section('page_title')
-New pad
+Create a Pad
 @stop
 
 @section('content')
@@ -10,7 +10,7 @@ New pad
     {{ Form::label('name', 'Name') . Form::text('name', Input::old('name')) }}
     @include('partials.error', array('error' => $errors->first('name')))
 
-    {{ Form::submit('Save') }}
+    {{ Form::submit('Create') }}
 
     {{ Form::close() }}
 
