@@ -43,32 +43,19 @@ Please follow code style guidelines and best practices for your programming lang
 Specify guidelines in a README file in a code style section.
 
 
-====================
-Application overview
-====================
+========================
+Application requirements
+========================
 
 Notejam is a web application which allows user to sign up/in/out and create/view/edit/delete notes.
 Notes are grouped in pads. See `screenshots <https://github.com/komarserjio/notejam/tree/master/screenshots.rst>`_
 for look and feel.
 
------------------------
-Objects/Models/Entities
------------------------
-
-Structure of objects (aka models or entities) used in the app:
-
-* Note: id, pad_id, user_id, name, text, created_at, updated_at
-* Pad: id, user_id, name
-* User: id, email, password
-
-See recommended `database schema <https://github.com/komarserjio/notejam/tree/master/schema.sql>`_ for details.
-
-
 -----
 Pages
 -----
 
-All html layouts are sliced and available in the `html <https://github.com/komarserjio/notejam/tree/master/html>`_ folder.
+All html layouts are available in the `html <https://github.com/komarserjio/notejam/tree/master/html>`_ folder.
 
 **User pages**
 

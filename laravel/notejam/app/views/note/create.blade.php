@@ -1,7 +1,7 @@
 @extends('user')
 
 @section('page_title')
-New note
+Create a Note
 @stop
 
 @section('content')
