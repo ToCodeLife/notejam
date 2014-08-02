@@ -80,7 +80,7 @@ Contribution
 
 Do you have php/laravel experience? Help the app to follow php and laravel best practices.
 
-Please send your pull requests in the ``master`` branch.
+Please send your pull requests in the ``laravel`` branch, not ``master``.
 Always prepend your commits with framework name:
 
 .. code-block:: bash
