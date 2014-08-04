@@ -4,7 +4,7 @@ Notejam: Django
 
 Notejam application implemented using `Django <https://www.djangoproject.com/>`_ framework.
 
-Django version: 1.4
+Django version: 1.6
 
 ==========================
 Installation and launching
@@ -71,7 +71,7 @@ Contribution
 ============
 Do you have python/django experience? Help the app to follow python and django best practices.
 
-Please send your pull requests in the ``django`` branch, not ``master``.
+Please send your pull requests in the ``master`` branch.
 Always prepend your commits with framework name:
 
 .. code-block:: bash
