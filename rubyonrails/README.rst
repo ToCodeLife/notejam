@@ -73,7 +73,7 @@ Contribution
 ============
 Do you have ruby/rails experience? Help the app to follow ruby and rails best practices.
 
-Please send your pull requests in the ``master`` branch.
+Please send your pull requests in the ``rubyonrails`` branch, not ``master``.
 Always prepend your commits with framework name:
 
 .. code-block:: bash

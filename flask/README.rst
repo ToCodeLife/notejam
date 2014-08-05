@@ -79,7 +79,7 @@ Contribution
 
 Do you have python/flask experience? Help the app to follow python and flask best practices.
 
-Please send your pull requests in the ``master`` branch.
+Please send your pull requests in the ``flask`` branch, not ``master``.
 Always prepend your commits with framework name:
 
 .. code-block:: bash
