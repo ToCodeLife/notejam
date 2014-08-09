@@ -1,18 +1,16 @@
-***************
-Notejam: Django
-***************
+******************************
+Notejam: Django implementation
+******************************
 
-Notejam application implemented using `Django <https://www.djangoproject.com/>`_ framework.
-
-Django version: 1.6
+Notejam application implemented using Django framework.
 
 ==========================
 Installation and launching
 ==========================
 
------
-Clone
------
+-------
+Cloning
+-------
 
 Clone the repo:
 
@@ -20,11 +18,10 @@ Clone the repo:
 
     $ git clone git@github.com:komarserjio/notejam.git YOUR_PROJECT_DIR/
 
--------
-Install
--------
-Use `virtualenv <http://www.virtualenv.org>`_ or `virtualenvwrapper <http://virtualenvwrapper.readthedocs.org/>`_
-for `environment management <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_.
+-------------------
+Install environment
+-------------------
+Using `virtualenv`_ is strongly advised.
 
 Install dependencies:
 
@@ -32,14 +29,6 @@ Install dependencies:
 
     $ cd YOUR_PROJECT_DIR/django/
     $ pip install -r requirements.txt
-
-Create database schema:
-
-.. code-block:: bash
-
-    $ cd YOUR_PROJECT_DIR/django/notejam/
-    $ ./manage.py syncdb
-    $ ./manage.py migrate
 
 ------
 Launch
@@ -54,11 +43,11 @@ Start django web server:
 
 Go to http://127.0.0.1:8000/ in your browser.
 
----------
-Run tests
----------
+------------------
+Running unit tests
+------------------
 
-Run functional and unit tests:
+Run unit tests:
 
 .. code-block:: bash
 
@@ -66,16 +55,21 @@ Run functional and unit tests:
     $ ./manage.py test
 
 
+
 ============
 Contribution
 ============
-Do you have python/django experience? Help the app to follow python and django best practices.
 
-Please send your pull requests in the ``master`` branch.
-Always prepend your commits with framework name:
+Please send your pull requests in the ``django`` branch, not ``master``.
+
+Always prepend your commits with a framework name:
 
 .. code-block:: bash
 
     Django: Implemented sign in functionality
 
-Read `contribution guide <https://github.com/komarserjio/notejam/blob/master/contribute.rst>`_ for details.
+Post issues into project github tracker. 
+
+Read contribution guide for details.
+
+.. _virtualenv: http://www.virtualenv.org 

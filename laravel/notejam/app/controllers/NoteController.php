@@ -3,17 +3,17 @@
 class NoteController extends BaseController {
 
 
-    public function index()
-    {
+	public function index()
+	{
         $orderParams = $this->processOrderParam();
         $notes = Auth::user()->notes()->orderBy(
             $orderParams[0], $orderParams[1]
         )->get();
-        return View::make('note/index', array('notes' => $notes));
-    }
+		return View::make('note/index', array('notes' => $notes));
+	}
 
-    public function create()
-    {
+	public function create()
+	{
         if (Request::isMethod('post'))
         {
             $validation = $this->validator();
@@ -35,10 +35,10 @@ class NoteController extends BaseController {
             }
             Auth::user()->notes()->save($note);
             return Redirect::route('view_note', array('id' => $note->id))
-                ->with('success', 'Note is successfully created.');
+                ->with('success', 'Note is created.');
         }
-        return View::make('note/create');
-    }
+		return View::make('note/create');
+	}
 
     public function edit($id)
     {
@@ -67,13 +67,13 @@ class NoteController extends BaseController {
             Auth::user()->notes()->save($note);
 
             return Redirect::route('view_note', array('id' => $note->id))
-                ->with('success', 'Note is successfully updated.');
+                ->with('success', 'Note is updated.');
         }
-        return View::make('note/edit', array('note' => $note));
+		return View::make('note/edit', array('note' => $note));
     }
 
-    public function delete($id)
-    {
+	public function delete($id)
+	{
         $note = $this->getNoteOrFail($id);
         if (Request::isMethod('post'))
         {
@@ -81,13 +81,13 @@ class NoteController extends BaseController {
             return Redirect::route('all_notes')
                 ->with('success', 'Note is deleted.');
         }
-        return View::make('note/delete', array('note' => $note));
-    }
+		return View::make('note/delete', array('note' => $note));
+	}
 
     public function view($id)
     {
         $note = $this->getNoteOrFail($id);
-        return View::make('note/view', array('note' => $note));
+		return View::make('note/view', array('note' => $note));
     }
 
     private function getNoteOrFail($id)
