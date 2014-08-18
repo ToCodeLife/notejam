@@ -42,7 +42,7 @@ class UserController extends BaseController {
             Input::all(),
             array(
                 'email' => 'required|email',
-                'password' => 'required|min:6',
+                'password' => 'required',
             )
         );
         if ($validation->fails())
