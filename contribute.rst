@@ -6,8 +6,6 @@ Contribution guide
 Pull requests and commits
 =========================
 
-Send your pull requests in the ``master`` branch.
-
 Please prepend commit messages with framework name.
 
 **Good** commit messages:
@@ -31,6 +29,12 @@ Please prepend commit messages with framework name.
     Fixed broken symfony pad tests
 
 
+If you contribute into on of the existing application please
+send your pull requests in the specific branch
+(e.g. ``django`` branch for Django framework, ``rubyonrails`` for Ruby on Rails)
+
+If you develop new application submit your code in the ``master`` branch.
+
 ==========
 Code style
 ==========
@@ -39,32 +43,20 @@ Please follow code style guidelines and best practices for your programming lang
 Specify guidelines in a README file in a code style section.
 
 
-====================
-Application overview
-====================
+========================
+Application requirements
+========================
 
-Notejam is a web application which allows user to sign up/in/out and create/view/edit/delete notes.
-Notes are grouped in pads. See `screenshots <https://github.com/komarserjio/notejam/tree/master/screenshots.rst>`_
-for look and feel.
+Notejam is a web application which allows user to sign up/in/out and
+create/view/edit/delete notes and pads.
+
+Live demo at (TBD).
 
 -----------------------
-Objects/Models/Entities
+Pages to be implemented
 -----------------------
 
-Structure of objects (aka models or entities) used in the app:
-
-* Note: id, pad_id, user_id, name, text, created_at, updated_at
-* Pad: id, user_id, name
-* User: id, email, password
-
-See recommended `database schema <https://github.com/komarserjio/notejam/tree/master/schema.sql>`_ for details.
-
-
------
-Pages
------
-
-All html layouts are sliced and available in the `html <https://github.com/komarserjio/notejam/tree/master/html>`_ folder.
+All html layouts are available in the `html` folder.
 
 **User pages**
 
@@ -102,6 +94,12 @@ All html layouts are sliced and available in the `html <https://github.com/komar
 * ``GET /pads/<pad_id>/delete/`` - Show confirmation delete page
 * ``POST /pads/<pad_id>/delete/`` - Delete pad
 
+
+----
+I18N
+----
+
+Not supported yet
 
 ---------------------
 Functional/unit tests

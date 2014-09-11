@@ -1,8 +1,8 @@
-****************
-Notejam: Pyramid
-****************
+****************************
+Notejam: Pyramid application
+****************************
 
-Notejam application implemented using `Pyramid <http://www.pylonsproject.org/>`_ framework.
+Notejam application implemented using `Pyramid`_ framework.
 
 Pyramid version: 1.5
 
@@ -10,9 +10,9 @@ Pyramid version: 1.5
 Installation and launching
 ==========================
 
------
-Clone
------
+-------
+Cloning
+-------
 
 Clone the repo:
 
@@ -20,12 +20,10 @@ Clone the repo:
 
     $ git clone git@github.com:komarserjio/notejam.git YOUR_PROJECT_DIR/
 
--------
-Install
--------
-
-Use `virtualenv <http://www.virtualenv.org>`_ or `virtualenvwrapper <http://virtualenvwrapper.readthedocs.org/>`_
-for `environment management <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_.
+-------------------
+Install environment
+-------------------
+Using `virtualenv`_ is strongly advised.
 
 Install dependencies:
 
@@ -34,16 +32,9 @@ Install dependencies:
     $ cd YOUR_PROJECT_DIR/pyramid/
     $ python setup.py develop
 
-Create database schema:
-
-.. code-block:: bash
-
-    $ cd YOUR_PROJECT_DIR/pyramid/
-    $ initialize_notejam_db development.ini
-
-------
-Launch
-------
+---------
+Launching
+---------
 
 Start pyramid web server:
 
@@ -54,11 +45,11 @@ Start pyramid web server:
 
 Go to http://127.0.0.1:6543/ in your browser
 
----------
-Run tests
----------
+-------------
+Running tests
+-------------
 
-Run functional and unit tests:
+Run unit tests:
 
 .. code-block:: bash
 
@@ -69,13 +60,14 @@ Run functional and unit tests:
 Contribution
 ============
 
-Do you have python/pyramid experience? Help the app to follow python and pyramid best practices.
+Please send your pull requests in the ``pyramid`` branch, not ``master``.
 
-Please send your pull requests in the ``master`` branch.
-Always prepend your commits with framework name:
+Always prepend your commits with a framework name:
 
 .. code-block:: bash
 
     Pyramid: Implemented sign in functionality
 
-Read `contribution guide <https://github.com/komarserjio/notejam/blob/master/contribute.rst>`_ for details.
+
+.. _virtualenv: http://www.virtualenv.org 
+.. _Pyramid: http://www.pylonsproject.org

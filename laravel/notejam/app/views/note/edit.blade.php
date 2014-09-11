@@ -1,11 +1,11 @@
 @extends('user')
 
 @section('page_title')
-{{ $note->name }}
+Edit note {{ $note->name }}
 @stop
 
 @section('content')
-    {{ Form::open(array("route" => array("notes.update", $note->id), "class" => "note")) }}
+    {{ Form::open(array("class" => "note")) }}
 
     {{ Form::label('name', 'Name') . Form::text('name', $note->name, array('class' => 'thirteen')) }}
     @include('partials.error', array('error' => $errors->first('name')))

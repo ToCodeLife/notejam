@@ -10,6 +10,7 @@ dist
 build
 eggs
 parts
+bin
 var
 sdist
 develop-eggs
@@ -38,10 +39,9 @@ nosetests.xml
 
 # DB
 *.db
-*.db_snapshot
 
 # Django
 /django/notejam/static/
 
-#.phar archives
-*.phar
+# Node.js modules
+node_modules

@@ -15,7 +15,6 @@ module Notejam
       role.allow '/signin'
       role.allow '/signup'
       role.allow '/forgot-password'
-      role.allow '/set-session-variable'
     end
 
     set :delivery_method, :test
@@ -64,9 +63,6 @@ module Notejam
     #     disable :asset_stamp # no asset timestamping for dev
     #   end
     #
-    configure :test do
-      set :protect_from_csrf, false
-    end
 
     ##
     # You can manage errors like:
