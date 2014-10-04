@@ -43,5 +43,8 @@ nosetests.xml
 # Django
 /django/notejam/static/
 
+# Node.js modules
+node_modules
+
 #.phar archives
 *.phar
