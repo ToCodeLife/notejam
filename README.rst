@@ -4,7 +4,7 @@ Notejam
 
 **The easy way to learn web frameworks**
 
-Do you know framework X and want to try framework Y?
+Do you know django/laravel/symfony/etc and want to try rails/flask/pyramid/etc?
 The easy way to start with a new framework is to compare it with frameworks you already know.
 The goal of the project is to help developers easily learn new frameworks by examples.
 
@@ -55,8 +55,7 @@ In progress
 
 **PHP**
 
-* CakePHP
-* CodeIgniter
+* Zend
 
 
 ... and more frameworks are coming soon.
@@ -110,7 +109,7 @@ Typical application covers following topics:
 How to launch
 =============
 
-All implementations are SQLite based and quickly launchable by built-in web servers.
+All implemenations are SQLite based and quiclky launchable by built-in web servers.
 Each implementation has instruction describing easy steps to install environment, launch and run tests.
 
 ============
@@ -124,7 +123,7 @@ or provide new implementation for unsupported framework.
 
 **Do you want to improve one of the existing implementations?**
 
-Each implementation has its own README with contribution details.
+Each implemenation has its own README with contribution details.
 
 **Do you want to add new framework?**
 
