@@ -1,6 +1,6 @@
-class NotesController < ApplicationController
+class NoteController < ApplicationController
   before_action :authenticate_user
-  def index
+  def list
     @notes = current_user.notes.order(order_param)
   end
 
@@ -13,7 +13,7 @@ class NotesController < ApplicationController
         current_user.pads.find(params[:note][:pad_id])
       end
       if @note.update(note_params)
-        redirect_to note_path(id: @note.id), flash: { success: 'Note is successfully updated' }
+        redirect_to view_note_path(id: @note.id), flash: { success: 'Note is successfully updated' }
       end
     end
   end
@@ -22,7 +22,7 @@ class NotesController < ApplicationController
     @note = current_user.notes.find(params[:id])
     if request.post?
       @note.destroy
-      redirect_to notes_path, flash: { success: 'Note is successfully deleted' }
+      redirect_to all_notes_path, flash: { success: 'Note is successfully deleted' }
     end
   end
 
@@ -34,12 +34,12 @@ class NotesController < ApplicationController
       end
       @note = current_user.notes.create(note_params)
       if @note.valid?
-        redirect_to notes_path, flash: { success: 'Note is successfully created' }
+        redirect_to all_notes_path, flash: { success: 'Note is successfully created' }
       end
     end
   end
 
-  def show
+  def view
     @note = current_user.notes.find(params[:id])
   end
 
