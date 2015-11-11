@@ -2,11 +2,11 @@
 
 namespace app\controllers;
 
-use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\Pad;
+use app\controllers\BaseController;
 
 class PadController extends BaseController
 {
@@ -40,9 +40,7 @@ class PadController extends BaseController
         $pad = new Pad();
 
         if ($pad->load(Yii::$app->request->post()) && $pad->validate()) {
-            /** @var User $user */
-            $user = Yii::$app->user->identity;
-            $user->link('pads', $pad);
+            Yii::$app->user->identity->link('pads', $pad);
             Yii::$app->session->setFlash(
                 'success', 'Pad is successfully created.'
             );
@@ -53,9 +51,9 @@ class PadController extends BaseController
         ]);
     }
 
-    public function actionEdit($id)
+    public function actionEdit()
     {
-        $pad = $this->getPad($id);
+        $pad = $this->getPad(Yii::$app->request->get('id'));
 
         if ($pad->load(Yii::$app->request->post()) && $pad->validate()) {
             $pad->save();
@@ -69,9 +67,9 @@ class PadController extends BaseController
         ]);
     }
 
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $pad = $this->getPad($id);
+        $pad = $this->getPad(Yii::$app->request->get('id'));
 
         if (Yii::$app->request->getIsPost()) {
             $pad->delete();
@@ -85,9 +83,9 @@ class PadController extends BaseController
         ]);
     }
 
-    public function actionView($id)
+    public function actionView()
     {
-        $pad = $this->getPad($id);
+        $pad = $this->getPad(Yii::$app->request->get('id'));
         $notes = $pad->getNotes()->orderBy($this->getOrderParam())->all();
         return $this->render('view', ['pad' => $pad, 'notes' => $notes]);
     }
@@ -95,16 +93,12 @@ class PadController extends BaseController
     /**
      * Get pad or raise 404
      *
-     * @param integer $id pad id
-     * @return Pad
-     * @throws \yii\web\HttpException
+     * @return app\models\Pad
      */
     private function getPad($id)
     {
-        $pad = Pad::findOne([
-            'id' => $id,
-            'user_id' => Yii::$app->user->identity->getId(),
-        ]);
+        $user = Yii::$app->user->identity;
+        $pad = $user->getPads()->where(['id' => $id])->one();
         if (!$pad) {
             throw new \yii\web\HttpException(404, 'Not Found');
         }

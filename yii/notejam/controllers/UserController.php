@@ -2,14 +2,12 @@
 
 namespace app\controllers;
 
-use app\models\ChangePassword;
-use app\models\ForgotPassword;
-use app\models\SigninForm;
-use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use app\models\LoginForm;
+use app\models\ContactForm;
 
 class UserController extends Controller
 {
@@ -51,7 +49,7 @@ class UserController extends Controller
 
     public function actionSettings()
     {
-        $model = new ChangePassword();
+        $model = new \app\models\ChangePassword();
         if ($model->load(Yii::$app->request->post()) &&
             $model->changePassword(Yii::$app->user->identity)
         ) {
@@ -68,7 +66,7 @@ class UserController extends Controller
 
     public function actionForgotPassword()
     {
-        $model = new ForgotPassword();
+        $model = new \app\models\ForgotPassword();
         if ($model->load(Yii::$app->request->post()) &&
             $model->resetPassword()
         ) {
@@ -90,7 +88,7 @@ class UserController extends Controller
             return $this->goHome();
         }
 
-        $model = new SigninForm();
+        $model = new \app\models\SigninForm();
         if ($model->load(Yii::$app->request->post()) && $model->signin()) {
             return $this->goHome();
         } else {
@@ -102,7 +100,7 @@ class UserController extends Controller
 
     public function actionSignup()
     {
-        $model = new SignupForm();
+        $model = new \app\models\SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 Yii::$app->session->setFlash(

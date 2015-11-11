@@ -4,7 +4,7 @@ Notejam: Yii
 
 Notejam application implemented using `Yii <http://www.yiiframework.com/>`_ framework.
 
-Yii version: 2.0.6
+Yii version: 2.0
 
 PHP version required: 5.4+
 
@@ -32,7 +32,6 @@ Install `composer <https://getcomposer.org/>`_
 
     $ cd YOUR_PROJECT_DIR/yii/notejam
     $ curl -s https://getcomposer.org/installer | php
-    $ php composer.phar global require "fxp/composer-asset-plugin:~1.1.0"
 
 Install dependencies
 
@@ -58,7 +57,7 @@ Start built-in php web server:
 .. code-block:: bash
 
     $ cd YOUR_PROJECT_DIR/yii/notejam/web
-    $ ./yii serve --port=8000
+    $ php -S localhost:8000
 
 Go to http://localhost:8000 in your browser.
 
@@ -78,7 +77,7 @@ Run functional tests:
 ============
 Contribution
 ============
-Do you have php/yii experience? Help the app to follow PHP and Yii best practices.
+Do you have php/yii experience? Help the app to follow php and yii best practices.
 
 Please send your pull requests in the ``master`` branch.
 Always prepend your commits with framework name:

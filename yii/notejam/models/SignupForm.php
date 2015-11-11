@@ -3,12 +3,11 @@ namespace app\models;
 
 use app\models\User;
 use Yii;
-use yii\base\Model;
 
 /**
  * Signup form
  */
-class SignupForm extends Model
+class SignupForm extends \yii\base\Model
 {
     public $email;
     public $password;

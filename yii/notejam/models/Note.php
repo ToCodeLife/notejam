@@ -56,7 +56,7 @@ class Note extends \yii\db\ActiveRecord
     /**
      * Get user
      *
-     * @return User
+     * @return app\models\User
      */
     public function getUser()
     {
@@ -66,7 +66,7 @@ class Note extends \yii\db\ActiveRecord
     /**
      * Get pad
      *
-     * @return Pad
+     * @return app\models\Pad
      */
     public function getPad()
     {
