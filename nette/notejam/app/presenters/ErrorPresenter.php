@@ -1,9 +1,8 @@
 <?php
 
-namespace Notejam\Presenters;
+namespace App\Presenters;
 
 use Nette;
-use Nette\Application\Responses;
 use Tracy\ILogger;
 
 
@@ -19,16 +18,20 @@ class ErrorPresenter extends Nette\Object implements Nette\Application\IPresente
 	}
 
 
+	/**
+	 * @return Nette\Application\IResponse
+	 */
 	public function run(Nette\Application\Request $request)
 	{
-		$exception = $request->getParameter('exception');
+		$e = $request->getParameter('exception');
 
-		if ($exception instanceof Nette\Application\BadRequestException) {
-			return new Responses\ForwardResponse($request->setPresenterName('Error4xx'));
+		if ($e instanceof Nette\Application\BadRequestException) {
+			// $this->logger->log("HTTP code {$e->getCode()}: {$e->getMessage()} in {$e->getFile()}:{$e->getLine()}", 'access');
+			return new Nette\Application\Responses\ForwardResponse($request->setPresenterName('Error4xx'));
 		}
 
-		$this->logger->log($exception, ILogger::EXCEPTION);
-		return new Responses\CallbackResponse(function () {
+		$this->logger->log($e, ILogger::EXCEPTION);
+		return new Nette\Application\Responses\CallbackResponse(function () {
 			require __DIR__ . '/templates/Error/500.phtml';
 		});
 	}

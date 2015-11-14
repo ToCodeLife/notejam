@@ -1,2 +1,0 @@
-services:
-	router: Notejam\Http\RouterFactory::createRouter
