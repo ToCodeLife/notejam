@@ -1,149 +1,37 @@
 <?php
 
-namespace Notejam\Presenters;
 
-use Doctrine\ORM\EntityManager;
-use Nette;
-use Notejam\Components\IPadsControlFactory;
-use Notejam\Notes\NoteRepository;
-use Notejam\Pads\Pad;
-use Notejam\Pads\PadRepository;
+namespace App\Presenters;
 
 
+use App\Model\PadManager;
+use App\Forms\EditPadFormFactory;
 
-/**
- * @User()
- */
 class PadPresenter extends BasePresenter
 {
 
-	/**
-	 * @inject
-	 * @var NoteRepository
-	 */
-	public $noteRepository;
+	/** @var PadManager @inject */
+	public $padManager;
 
-	/**
-	 * @inject
-	 * @var PadRepository
-	 */
-	public $padRepository;
-
-	/**
-	 * @inject
-	 * @var IPadsControlFactory
-	 */
-	public $padsControlFactory;
-
-	/**
-	 * @inject
-	 * @var EntityManager
-	 */
-	public $em;
-
-	/**
-	 * @var Pad
-	 */
-	private $pad;
+	/** @var EditPadFormFactory @inject */
+	public $formFactory;
 
 
-
-	protected function startup()
+	public function renderDefault($id)
 	{
-		parent::startup();
-
-		// so we don't have to repeat the code in every action
-		if ($id = $this->getParameter('id')) {
-			$this->pad = $this->padRepository->findOneBy([
-				'id' => $id,
-				'user' => $this->user->getId()
-			]);
-		}
+		$this->template->pad = $this->padManager->find($id);
 	}
 
 
-
-	protected function beforeRender()
+	public function renderEdit($id)
 	{
-		parent::beforeRender();
-
-		// so we don't have to repeat the code in every render method
-		$this->template->pad = $this->pad;
+		$this->template->pad = $this->padManager->find($id);
 	}
 
 
-
-	public function actionDetail($id, $order = 'name')
+	public function renderDelete($id)
 	{
-		if (!$this->pad) {
-			$this->error();
-		}
 
-		$this->template->notes = $this->noteRepository->findBy(
-			[
-				'user' => $this->getUser()->getId(),
-				'pad' => $this->pad->getId()
-			],
-			$this->noteRepository->buildOrderBy($order)
-		);
-	}
-
-
-
-	public function actionEdit($id)
-	{
-		if (!$this->pad) {
-			$this->error();
-		}
-	}
-
-
-
-	/**
-	 * @secured
-	 */
-	public function handleDelete($id)
-	{
-		if (!$this->pad) {
-			$this->error();
-		}
-
-		$this->em->remove($this->pad);
-		$this->em->flush();
-		$this->redirect('Note:');
-	}
-
-
-
-	protected function createComponentCreatePad()
-	{
-		if ($this->action !== 'create') {
-			$this->error();
-		}
-
-		$control = $this->padsControlFactory->create();
-		$control->onSuccess[] = function ($control, Pad $createdPad) {
-			$this->redirect('Pad:detail', ['id' => $createdPad->getId()]);
-		};
-
-		return $control;
-	}
-
-
-
-	protected function createComponentEditPad()
-	{
-		if ($this->action !== 'edit' || !$this->pad) {
-			$this->error();
-		}
-
-		$control = $this->padsControlFactory->create();
-		$control->setPad($this->pad);
-		$control->onSuccess[] = function () {
-			$this->redirect('Pad:detail', ['id' => $this->pad->getId()]);
-		};
-
-		return $control;
 	}
 
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Notejam\Presenters;
+namespace App\Presenters;
 
 use Nette;
 
 
-class Error4xxPresenter extends Nette\Application\UI\Presenter
+class Error4xxPresenter extends BasePresenter
 {
 
 	public function renderDefault(\Exception $exception)
