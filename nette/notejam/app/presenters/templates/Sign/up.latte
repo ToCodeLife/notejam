@@ -1,0 +1,20 @@
+{block title}Sign Up{/block}
+{block header}Sign Up{/block}
+{block content}
+	<form class="offset-by-six sign-in" n:name="signUpForm">
+
+		<div class="alert-area" n:if="$form->hasErrors()">
+			<div n:foreach="$form->errors as $error" class="alert alert-error">{$error}</div>
+		</div>
+
+		{label email /}
+		{input email}
+		{label password /}
+		{input password}
+		{label confirm /}
+		{input confirm}
+		{input submit} or <a n:href='Sign:in'>Sign in</a>
+		<hr>
+		<p><a n:href="Sign:forgotten" class="small-red">Forgot password?</a></p>
+	</form>
+{/block}

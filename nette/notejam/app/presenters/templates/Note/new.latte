@@ -1,0 +1,16 @@
+{block title}New note{/block}
+{block header}New note{/block}
+{block content}
+	{form newNoteForm 'class' => 'note'}
+		<div class="alert-area" n:if="$form->hasErrors()">
+			<div n:foreach="$form->errors as $error" class="alert alert-error">{$error}</div>
+		</div>
+	{label name /}
+	{input name}
+	{label text /}
+	{input text}
+	{label pad /}
+	{input pad}
+	{input submit}
+	{/form}
+{/block}
