@@ -6,6 +6,8 @@ Notejam application implemented using `Nette framework <https://nette.org>`_.
 
 Nette version: 2.3
 
+The application is maintained by `@fprochazka <https://twitter.com/prochazkafilip>`_.
+
 ==========================
 Installation and launching
 ==========================
@@ -38,19 +40,19 @@ Install dependencies
     $ cd YOUR_PROJECT_DIR/nette/notejam
     $ php composer.phar install
 
-Create your copy of ``config.local.neon``
+Create empty ``config.local.neon``
 
 .. code-block:: bash
 
     $ cd YOUR_PROJECT_DIR/nette/notejam
-    $ cp app/config/config.example.neon app/config/config.local.neon
+    $ cp app/config/config.local.example.neon app/config/config.local.neon
 
 Create database schema
 
 .. code-block:: bash
 
     $ cd YOUR_PROJECT_DIR/nette/notejam
-    $ php ./bin/create-db.php
+    $ php www/index.php orm:schema:up --force
 
 
 ------
@@ -61,8 +63,8 @@ Start built-in php web server:
 
 .. code-block:: bash
 
-    $ cd YOUR_PROJECT_DIR/nette/notejam/www/
-    $ php -t `pwd` -S 127.0.0.1:8000 `pwd`/index.php
+    $ cd YOUR_PROJECT_DIR/nette/notejam/
+    $ php -t `pwd`/www -S 127.0.0.1:8000 `pwd`/www/index.php
 
 Go to http://localhost:8000/ in your browser.
 
@@ -74,10 +76,8 @@ Run tests:
 
 .. code-block:: bash
 
-    $ cd YOUR_PROJECT_DIR/nette/notejam/www/
-    $ php -t `pwd` -S 127.0.0.1:8000 `pwd`/index.php
-    $ cd ../
-    $ ./vendor/bin/codecept run
+    $ cd YOUR_PROJECT_DIR/nette/notejam/
+    $ ./bin/phpunit -c app/
 
 
 ============

@@ -1,182 +1,252 @@
 <?php
 
-namespace App\Presenters;
+namespace Notejam\Presenters;
 
-use App\Forms\Note\DeleteNoteFormFactory;
-use App\Forms\Note\EditNoteFormFactory;
-use App\Forms\Note\NewNoteFormFactory;
-use App\Model\NoteManager;
-use App\Model\PadManager;
+use Doctrine\ORM\EntityManager;
 use Nette;
-use App\Model;
-use Nette\Application\BadRequestException;
+use Notejam\Components\IConfirmationControlFactory;
+use Notejam\Components\INoteControlFactory;
+use Notejam\Notes\Note;
+use Notejam\Notes\NoteRepository;
+use Notejam\Pads\Pad;
+use Notejam\Pads\PadRepository;
 
 
-class NotePresenter extends SecuredBasePresenter
+
+/**
+ * Thanks to the User annotation, if you try to access this presenter when you're not logged in, you'll be redirected to login form page.
+ *
+ * @User()
+ */
+class NotePresenter extends BasePresenter
 {
 
-	/** @var PadManager @inject */
-	public $padManager;
+	/**
+	 * @inject
+	 * @var NoteRepository
+	 */
+	public $noteRepository;
 
-	/** @var NoteManager @inject */
-	public $noteManager;
+	/**
+	 * @inject
+	 * @var PadRepository
+	 */
+	public $padRepository;
 
-	/** @var EditNoteFormFactory @inject */
-	public $editPadFormFactory;
+	/**
+	 * @inject
+	 * @var INoteControlFactory
+	 */
+	public $noteControlFactory;
 
-	/** @var DeleteNoteFormFactory @inject */
-	public $deletePadFormFactory;
+	/**
+	 * @inject
+	 * @var IConfirmationControlFactory
+	 */
+	public $confirmationControlFactory;
 
-	/** @var NewNoteFormFactory @inject */
-	public $newPadFormFactory;
+	/**
+	 * @inject
+	 * @var EntityManager
+	 */
+	public $em;
 
-	/** @var int */
-	private $id;
-
-	/** @var int */
-	private $padId;
-
-	/** @var object */
+	/**
+	 * @var Note
+	 */
 	private $note;
 
-	/** @var object[] */
-	private $notes;
+	/**
+	 * @var Pad
+	 */
+	private $pad;
 
 
-	/********************* Controls ***********************************************************************************/
 
 	/**
-	 * @return \Nette\Application\UI\Form
+	 * This method is called on the presenter lifecycle begin,
+	 * so we can put here code that would be duplicated among the action methods.
+	 *
+	 * Also, this is a good place to add some common checks that apply to all presenter actions.
 	 */
-	protected function createComponentEditNoteForm()
+	protected function startup()
 	{
-		$form = $this->editPadFormFactory->create($this->id, $this->note->name, $this->note->text, $this->note->pad_id);
-		$form->onError[] = function ($form) {
-			foreach ($form->getErrors() as $error) {
-				$this->flashMessage($error, 'error');
+		parent::startup();
+
+		// so we don't have to repeat the code in every action
+		if ($id = $this->getParameter('id')) {
+			$this->note = $this->noteRepository->findOneBy([
+				'id' => $id,
+				'user' => $this->user->getId()
+			]);
+
+			if (!$this->note) {
+				$this->error();
 			}
-		};
-		$form->onSuccess[] = function ($form) {
-			$this->flashMessage('Note successfully updated', 'success');
-			$form->getPresenter()->redirect('default', ['id' => $this->id]);
-		};
-		return $form;
-	}
+		}
 
-	/**
-	 * @return \Nette\Application\UI\Form
-	 */
-	protected function createComponentDeleteNoteForm()
-	{
-		$form = $this->deletePadFormFactory->create($this->id);
-		$form->onError[] = function ($form) {
-			foreach ($form->getErrors() as $error) {
-				$this->flashMessage($error, 'error');
+		if ($padId = $this->getParameter('pad')) {
+			$this->pad = $this->padRepository->findOneBy([
+				'id' => $padId,
+				'user' => $this->user->getId()
+			]);
+
+			if (!$this->pad) {
+				$this->error();
 			}
-		};
-		$form->onSuccess[] = function ($form) {
-			$this->flashMessage('Note successfully deleted', 'success');
-			$form->getPresenter()->redirect('Homepage:');
-		};
-		return $form;
+		}
 	}
 
-	/**
-	 * @return \Nette\Application\UI\Form
-	 */
-	protected function createComponentNewNoteForm()
-	{
-		$form = $this->newPadFormFactory->create($this->padId);
-		$form->onError[] = function ($form) {
-			foreach ($form->getErrors() as $error) {
-				$this->flashMessage($error, 'error');
-			}
-		};
-		$form->onSuccess[] = function ($form) {
-			$this->flashMessage('Note successfully created', 'success');
-			$form->getPresenter()->redirect('Homepage:');
-		};
-		return $form;
-	}
 
-	/********************* Actions ************************************************************************************/
 
 	/**
-	 * Note:default.
-	 * @param int $id
-	 * @throws BadRequestException
+	 * This method is called before the render method.
+	 * It is a good place to add code that would be duplicated in all render methods.
 	 */
-	public function actionDefault($id)
+	protected function beforeRender()
 	{
-		$this->loadNote($id);
-		$this->notes = $this->noteManager->findByPad($id);
-	}
+		parent::beforeRender();
 
-	/**
-	 * Note:default render.
-	 */
-	public function renderDefault()
-	{
+		// so we don't have to repeat the code in every render method
 		$this->template->note = $this->note;
 	}
 
+
+
 	/**
-	 * Note:edit.
-	 * @param int $id
-	 * @throws BadRequestException
+	 * Prepares template variables for the default action.
+	 *
+	 * @param string $order
+	 */
+	public function renderDefault($order = 'name')
+	{
+		$this->template->notes = $this->noteRepository->findBy(
+			[
+				'user' => $this->getUser()->getId()
+			],
+			$this->noteRepository->buildOrderBy($order)
+		);
+	}
+
+
+
+	/**
+	 * Since the note is required for the detail,
+	 * if it haven't been found, the presenter should end with 404 error.
+	 */
+	public function actionDetail($id)
+	{
+		if (!$this->note) {
+			$this->error();
+		}
+	}
+
+
+
+	/**
+	 * Since the note is required for the edit,
+	 * if it haven't been found, the presenter should end with 404 error.
 	 */
 	public function actionEdit($id)
 	{
-		$this->loadNote($id);
+		if (!$this->note) {
+			$this->error();
+		}
 	}
 
-	/**
-	 * Note:edit render.
-	 */
-	public function renderEdit()
-	{
-		$this->template->note = $this->note;
-	}
+
 
 	/**
-	 * Note:delete.
-	 * @param int $id
-	 * @throws BadRequestException
+	 * Since the note is required for the delete,
+	 * if it haven't been found, the presenter should end with 404 error.
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadNote($id);
-	}
-
-	/**
-	 * Note:delete render.
-	 */
-	public function renderDelete()
-	{
-		$this->template->note = $this->note;
-	}
-
-	/**
-	 * Note:new.
-	 * @param int $pad
-	 */
-	public function actionNew($pad)
-	{
-		$this->padId = $pad;
-	}
-
-	/**
-	 * Loads note with given id and if not found, throws BadRequestException.
-	 * @param int $id
-	 * @throws BadRequestException
-	 */
-	private function loadNote($id)
-	{
-		$this->id = $id;
-		$this->note = $this->noteManager->find($this->id);
 		if (!$this->note) {
-			throw new BadRequestException("Pad with given id not found");
+			$this->error();
 		}
+	}
+
+
+
+	/**
+	 * Factory method for subcomponent form instance.
+	 * This factory is called internally by Nette in the component model.
+	 *
+	 * This factory creates a ConfirmationControl,
+	 * that calls the onConfirm event if user clicks on the button.
+	 *
+	 * @return \Notejam\Components\ConfirmationControl
+	 */
+	protected function createComponentDeleteNote()
+	{
+		if ($this->action !== 'delete') {
+			$this->error();
+		}
+
+		$control = $this->confirmationControlFactory->create();
+		$control->onConfirm[] = function () {
+			$this->em->remove($this->note);
+			$this->em->flush();
+			$this->flashMessage('The note has been deleted', 'success');
+			$this->redirect('Note:');
+		};
+
+		return $control;
+	}
+
+
+
+	/**
+	 * Factory method for subcomponent form instance.
+	 * This factory is called internally by Nette in the component model.
+	 *
+	 * This factory creates a NoteControl that handles creation of new notes.
+	 *
+	 * @return \Notejam\Components\NoteControl
+	 * @throws Nette\Application\BadRequestException
+	 */
+	protected function createComponentCreateNote()
+	{
+		if ($this->action !== 'create') {
+			$this->error();
+		}
+
+		$control = $this->noteControlFactory->create();
+		$control->setPad($this->pad);
+		$control->onSuccess[] = function () {
+			$this->flashMessage('Note was successfully created', 'success');
+			$this->redirect('Note:');
+		};
+
+		return $control;
+	}
+
+
+
+	/**
+	 * Factory method for subcomponent form instance.
+	 * This factory is called internally by Nette in the component model.
+	 *
+	 * This factory creates a NoteControl that handles edit of existing notes.
+	 *
+	 * @return \Notejam\Components\NoteControl
+	 * @throws Nette\Application\BadRequestException
+	 */
+	protected function createComponentEditNote()
+	{
+		if ($this->action !== 'edit' || !$this->note) {
+			$this->error();
+		}
+
+		$control = $this->noteControlFactory->create();
+		$control->setNote($this->note);
+		$control->onSuccess[] = function () {
+			$this->flashMessage('Note was successfully edited', 'success');
+			$this->redirect('Note:');
+		};
+
+		return $control;
 	}
 
 }

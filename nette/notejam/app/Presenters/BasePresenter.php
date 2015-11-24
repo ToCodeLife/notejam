@@ -1,47 +1,71 @@
 <?php
 
-namespace App\Presenters;
+namespace Notejam\Presenters;
 
-use App\Components\Pads\IPadsFactory;
-use App\Components\UserBar\IUserBarFactory;
-use App\Model\PadManager;
 use Nette;
-use App\Model;
+use Nette\Application\UI\PresenterComponentReflection;
+use Nextras\Application\UI\SecuredLinksPresenterTrait;
+use Notejam\Components\PadsList\IPadsListControlFactory;
+
 
 
 /**
- * Base presenter for all application presenters.
+ * It's a best practise to avoid sharing code using BasePresenters, but it's very practical.
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
 
-	/** @var IUserBarFactory @inject */
-	public $userBarFactory;
-
-	/** @var IPadsFactory @inject */
-	public $padsFactory;
-
-	/** @var PadManager @inject */
-	public $padManager;
-
-	/** @var object[] */
-	protected $pads;
+	use SecuredLinksPresenterTrait;
 
 	/**
-	 * @return \App\Components\UserBar\UserBar
+	 * @inject
+	 * @var IPadsListControlFactory
 	 */
-	protected function createComponentUserBar()
+	public $padsListControlFactory;
+
+
+
+	/**
+	 * Factory method for subcomponent form instance.
+	 * This factory is called internally by Nette in the component model.
+	 *
+	 * @return \Notejam\Components\PadsList\PadsListControl
+	 */
+	protected function createComponentPadsList()
 	{
-		return $this->userBarFactory->create();
+		return $this->padsListControlFactory->create();
 	}
 
+
+
 	/**
-	 * @return \App\Components\Pads\Pads
+	 * This allows me to implement a basic access control for presenters.
+	 *
+	 * This method is called for every presenter run,
+	 * once it's created before the presenter startup,
+	 * and for every other lifecycle methods, like render, action and signals.
 	 */
-	protected function createComponentPads()
+	public function checkRequirements($element)
 	{
-		$this->pads = $this->padManager->findAll();
-		return $this->padsFactory->create($this->pads);
+		$user = PresenterComponentReflection::parseAnnotation($element, 'User');
+		if ($user === FALSE) {
+			return; // not protected
+		}
+
+		if (!$this->getUser()->isLoggedIn()) {
+			$this->forbiddenAccess();
+		}
+	}
+
+
+
+	/**
+	 * The default behaviour for parts of app, where the user is not allowed for some reason.
+	 * This can be overwritten in subclasses to achieve different behaviour.
+	 */
+	protected function forbiddenAccess()
+	{
+		$this->redirect('User:signIn');
 	}
 
 }

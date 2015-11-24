@@ -1,7 +1,2 @@
-log/*
-temp/*
-vendor/*
-!.gitignore
 app/config/config.local.neon
-
-tests/_output/*
+vendor
