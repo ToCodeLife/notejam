@@ -1,0 +1,10 @@
+{block title}{$pad->name}{/block}
+{block header}{$pad->name}{/block}
+{block content}
+	{form editPadForm}
+	{label name /}
+	{input name}
+	{input submit}
+		<div><a n:href="Pad:delete $pad->id" class="red">Delete pad</a></div>
+	{/form}
+{/block}
