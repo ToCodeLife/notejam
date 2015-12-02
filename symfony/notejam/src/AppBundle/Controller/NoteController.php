@@ -72,7 +72,7 @@ class NoteController extends Controller
 
         $note = new Note();
         if ($padId) {
-            $pad = $this->get('app.repository.pad')->find($padId);
+            $pad = $this->get('app.repository.pad')->find();
             $note->setPad($pad);
         }
 
