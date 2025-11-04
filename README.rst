@@ -131,8 +131,8 @@ Read `contribution guide <https://github.com/komarserjio/notejam/blob/master/con
 Contacts
 ========
 
-* Twitter: `@komarserjio <https://twitter.com/komarserjio>`_
-* Email: komarserjio <at> gmail.com
+* Telegram: `https://t.me/monk_4g`_
+* Email: jsonlim67889 <at> gmail.com
 
 =======
 License
